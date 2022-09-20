@@ -5,37 +5,36 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 void main(){
   runApp(
-   caculator()
+   Caculator()
   );
 }
-class caculator extends StatefulWidget{
+class Caculator extends StatefulWidget{
 
   @override
-  State<caculator> createState() => _caculatorState();
+  State<Caculator> createState() => _CaculatorState();
 }
 
-class _caculatorState extends State<caculator> {
-  String  resluts="";
-  int firstnumber=0;
-  int secondnumber=0;
-  String text="";
-  String operator="";
-  int test=0;
+class _CaculatorState extends State<Caculator> {
+  String  Result="";
+  int FirstNumber=0;
+  int SecondNumber=0;
+  String TheObjectIsDisplayedOnTheScreen="";
+  String Operator="";
+  int CheckWhatNumberYouAreEntering=0;
   String shadow="";
-  String checknullfirstnumber="";
-  String checknullsecondnumber="";
-  Widget createbuttom (String number)
+
+  Widget CreateButtom (String Button)
   {
     return  Expanded(
 
       child: OutlinedButton(
 
         onPressed: () {
-          clickbtn(number);
+          ClickButton(Button);
         },
 
         child: Text(
-          number,
+          Button,
           style: TextStyle(
               fontSize: 20
           ),
@@ -44,79 +43,79 @@ class _caculatorState extends State<caculator> {
       ),
     );
   }
-  clickbtn(btn)
+  ClickButton(Button)
   {
-    if(btn=="c")
+    if(Button=="c")
       {
-        resluts="";
-        firstnumber=0;
-        secondnumber=0;
-        text="";
-        operator="";
+        Result="";
+        FirstNumber=0;
+        SecondNumber=0;
+        TheObjectIsDisplayedOnTheScreen="";
+        Operator="";
       }
-else if(btn=="+"||btn=="-"||btn=="X"||btn=="/")
+else if(Button=="+"||Button=="-"||Button=="X"||Button=="/")
   {
-    operator=btn;
-   resluts=btn;
+    Operator=Button;
+    Result=Button;
 
   }
-else if(btn=="="){
+else if(Button=="="){
 
     {
-      
- if(operator=="+")
+
+ if(Operator=="+")
    {
-     resluts=(firstnumber+secondnumber).toString();
-     firstnumber=0;
-     secondnumber=0;
-     operator="";
-     test=1;
+     Result=(FirstNumber+SecondNumber).toString();
+     FirstNumber=0;
+     SecondNumber=0;
+     Operator="";
+     CheckWhatNumberYouAreEntering=1;
    }
- else if(operator=="-")
+ else if(Operator=="-")
  {
-   resluts=(firstnumber-secondnumber).toString();
-   firstnumber=0;
-   secondnumber=0;
-   operator="";
-   test=1;
+   Result=(FirstNumber-SecondNumber).toString();
+   FirstNumber=0;
+   SecondNumber=0;
+   Operator="";
+   CheckWhatNumberYouAreEntering=1;
 
  }
- else if(operator=="X")
+ else if(Operator=="X")
  {
-   resluts=(firstnumber*secondnumber).toString();
-   firstnumber=0;
-   secondnumber=0;
-   operator="";
-   test=1;
+   Result=(FirstNumber*SecondNumber).toString();
+   FirstNumber=0;
+   SecondNumber=0;
+   Operator="";
+   CheckWhatNumberYouAreEntering=1;
  }
- else if(operator=="/")
+ else if(Operator=="/")
  {
    double chia=0.0;
 
-   chia=(firstnumber/secondnumber);
-   firstnumber=0;
-   secondnumber=0;
-   resluts=chia.toString();
+   chia=(FirstNumber/SecondNumber);
+   FirstNumber=0;
+   SecondNumber=0;
+   Result=chia.toString();
 
-   operator="";
-   test=1;
+   Operator="";
+   CheckWhatNumberYouAreEntering=1;
  }
-shadow=resluts;
+shadow=Result;
     }
   }
 else{
-  if(operator=="") {
-    if(test==1)
+  if(Operator=="") {
+    if(CheckWhatNumberYouAreEntering==1)
       {
 
-        firstnumber = int.parse( btn);
-        test=0;
-        resluts=firstnumber.toString();
+        FirstNumber = int.parse( Button);
+        CheckWhatNumberYouAreEntering=0;
+        Result=FirstNumber.toString();
       }
     else
       {
-        firstnumber = int.parse(text + btn);
-        resluts=firstnumber.toString();
+        FirstNumber = int.parse(TheObjectIsDisplayedOnTheScreen + Button);
+        Result=FirstNumber.toString();
 
       }
   
@@ -125,18 +124,18 @@ else{
 
   else
     {
-      if(text=="+"||text=="-"||text=="X"||text=="/")
+      if(TheObjectIsDisplayedOnTheScreen=="+"||TheObjectIsDisplayedOnTheScreen=="-"||TheObjectIsDisplayedOnTheScreen=="X"||TheObjectIsDisplayedOnTheScreen=="/")
         {
-          text="";
+          TheObjectIsDisplayedOnTheScreen="";
         }
-    secondnumber=int.parse(text + btn);
-    resluts=secondnumber.toString();
+      SecondNumber=int.parse(TheObjectIsDisplayedOnTheScreen + Button);
+      Result=SecondNumber.toString();
 
     }
  
     }
 setState(() {
-  text=resluts;
+  TheObjectIsDisplayedOnTheScreen=Result;
 });
   }
 
@@ -167,10 +166,10 @@ body: Container(
                   alignment:  Alignment.topLeft,
                   child:OutlinedButton(
                     onPressed: (){
-                      firstnumber=int.parse(shadow);
-                      resluts=shadow;
+                      FirstNumber=int.parse(shadow);
+                      Result=shadow;
                       setState(() {
-                        text=resluts;
+                        TheObjectIsDisplayedOnTheScreen=Result;
                       });
                     },
                     child: Text("history reslut  "+shadow),
@@ -185,7 +184,7 @@ body: Container(
           child: Container(
             color: Colors.cyan,
             alignment: Alignment.bottomRight,
-            child: Text(text,
+            child: Text(TheObjectIsDisplayedOnTheScreen,
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 60
@@ -196,40 +195,40 @@ body: Container(
 
       Row(
         children: [
-          createbuttom("c"),
-          createbuttom("="),
-          createbuttom("0"),
-          createbuttom("/")
+          CreateButtom("c"),
+          CreateButtom("="),
+          CreateButtom("0"),
+          CreateButtom("/")
 
 
         ],
       ),
       Row(
         children: [
-       createbuttom("9"),
-          createbuttom("8"),
-          createbuttom("7"),
-          createbuttom("X")
+          CreateButtom("9"),
+          CreateButtom("8"),
+          CreateButtom("7"),
+          CreateButtom("X")
 
 
         ],
       ),
       Row(
         children: [
-          createbuttom("6"),
-          createbuttom("5"),
-          createbuttom("4"),
-          createbuttom("-")
+          CreateButtom("6"),
+          CreateButtom("5"),
+          CreateButtom("4"),
+          CreateButtom("-")
 
 
         ],
       ),
       Row(
         children: [
-          createbuttom("3"),
-          createbuttom("2"),
-          createbuttom("1"),
-          createbuttom("+")
+          CreateButtom("3"),
+          CreateButtom("2"),
+          CreateButtom("1"),
+          CreateButtom("+")
 
 
         ],
@@ -244,6 +243,11 @@ body: Container(
 
   }
 }
+
+
+
+
+
 
 
 
