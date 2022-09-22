@@ -12,12 +12,12 @@ class Caculator extends StatefulWidget {
 
 class _CaculatorState extends State<Caculator> {
   String Result = "";
-  int FirstNumber = 0;
-  int SecondNumber = 0;
-  String TheObjectIsDisplayedOnTheScreen = "";
+  int First_Number = 0;
+  int Second_Number = 0;
+  String The_Object_Is_Displayed_On_The_Screen = "";
   String Operator = "";
-  int CheckWhatNumberYouAreEntering = 0;
-  String ShadowOfResult = "";
+  int Check_What_Number_You_Are_Entering = 0;
+  String Shadow_Of_Result = "";
 
   Widget CreateButtom(String Button) {
     return Expanded(
@@ -33,12 +33,12 @@ class _CaculatorState extends State<Caculator> {
     );
   }
 
-  ClickButton(Button) {
+  void ClickButton(String Button) {
     if (Button == "c") {
       Result = "";
-      FirstNumber = 0;
-      SecondNumber = 0;
-      TheObjectIsDisplayedOnTheScreen = "";
+      First_Number = 0;
+      Second_Number = 0;
+      The_Object_Is_Displayed_On_The_Screen = "";
       Operator = "";
     } else if (Button == "+" ||
         Button == "-" ||
@@ -49,59 +49,59 @@ class _CaculatorState extends State<Caculator> {
     } else if (Button == "=") {
       {
         if (Operator == "+") {
-          Result = (FirstNumber + SecondNumber).toString();
-          FirstNumber = 0;
-          SecondNumber = 0;
+          Result = (First_Number + Second_Number).toString();
+          First_Number = 0;
+          Second_Number = 0;
           Operator = "";
-          CheckWhatNumberYouAreEntering = 1;
+          Check_What_Number_You_Are_Entering = 1;
         } else if (Operator == "-") {
-          Result = (FirstNumber - SecondNumber).toString();
-          FirstNumber = 0;
-          SecondNumber = 0;
+          Result = (First_Number - Second_Number).toString();
+          First_Number = 0;
+          Second_Number = 0;
           Operator = "";
-          CheckWhatNumberYouAreEntering = 1;
+          Check_What_Number_You_Are_Entering = 1;
         } else if (Operator == "X") {
-          Result = (FirstNumber * SecondNumber).toString();
-          FirstNumber = 0;
-          SecondNumber = 0;
+          Result = (First_Number * Second_Number).toString();
+          First_Number = 0;
+          Second_Number = 0;
           Operator = "";
-          CheckWhatNumberYouAreEntering = 1;
+          Check_What_Number_You_Are_Entering = 1;
         } else if (Operator == "/") {
           double Division = 0.0;
 
-          Division = (FirstNumber / SecondNumber);
-          FirstNumber = 0;
-          SecondNumber = 0;
+          Division = (First_Number / Second_Number);
+          First_Number = 0;
+          Second_Number = 0;
           Result = Division.toString();
 
           Operator = "";
-          CheckWhatNumberYouAreEntering = 1;
+          Check_What_Number_You_Are_Entering = 1;
         }
-        ShadowOfResult = Result;
+        Shadow_Of_Result = Result;
       }
     } else {
       if (Operator == "") {
-        if (CheckWhatNumberYouAreEntering == 1) {
-          FirstNumber = int.parse(Button);
-          CheckWhatNumberYouAreEntering = 0;
-          Result = FirstNumber.toString();
+        if (Check_What_Number_You_Are_Entering == 1) {
+          First_Number = int.parse(Button);
+          Check_What_Number_You_Are_Entering = 0;
+          Result = First_Number.toString();
         } else {
-          FirstNumber = int.parse(TheObjectIsDisplayedOnTheScreen + Button);
-          Result = FirstNumber.toString();
+          First_Number = int.parse(The_Object_Is_Displayed_On_The_Screen + Button);
+          Result = First_Number.toString();
         }
       } else {
-        if (TheObjectIsDisplayedOnTheScreen == "+" ||
-            TheObjectIsDisplayedOnTheScreen == "-" ||
-            TheObjectIsDisplayedOnTheScreen == "X" ||
-            TheObjectIsDisplayedOnTheScreen == "/") {
-          TheObjectIsDisplayedOnTheScreen = "";
+        if (The_Object_Is_Displayed_On_The_Screen == "+" ||
+            The_Object_Is_Displayed_On_The_Screen == "-" ||
+            The_Object_Is_Displayed_On_The_Screen == "X" ||
+            The_Object_Is_Displayed_On_The_Screen == "/") {
+          The_Object_Is_Displayed_On_The_Screen = "";
         }
-        SecondNumber = int.parse(TheObjectIsDisplayedOnTheScreen + Button);
-        Result = SecondNumber.toString();
+        Second_Number = int.parse(The_Object_Is_Displayed_On_The_Screen + Button);
+        Result = Second_Number.toString();
       }
     }
     setState(() {
-      TheObjectIsDisplayedOnTheScreen = Result;
+      The_Object_Is_Displayed_On_The_Screen = Result;
     });
   }
 
@@ -110,6 +110,7 @@ class _CaculatorState extends State<Caculator> {
     // TODO: implement build
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.cyan,
         appBar: AppBar(
           title: Text("may tinh bo tui"),
         ),
@@ -126,13 +127,13 @@ class _CaculatorState extends State<Caculator> {
                           alignment: Alignment.topLeft,
                           child: OutlinedButton(
                             onPressed: () {
-                              FirstNumber = int.parse(ShadowOfResult);
-                              Result = ShadowOfResult;
+                              First_Number = int.parse(Shadow_Of_Result);
+                              Result = Shadow_Of_Result;
                               setState(() {
-                                TheObjectIsDisplayedOnTheScreen = Result;
+                                The_Object_Is_Displayed_On_The_Screen = Result;
                               });
                             },
-                            child: Text("history reslut  " + ShadowOfResult),
+                            child: Text("history reslut  " + Shadow_Of_Result),
                           )),
                     )
                   ],
@@ -143,7 +144,7 @@ class _CaculatorState extends State<Caculator> {
                 color: Colors.cyan,
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  TheObjectIsDisplayedOnTheScreen,
+                  The_Object_Is_Displayed_On_The_Screen,
                   style: TextStyle(color: Colors.red, fontSize: 60),
                 ),
               )),
@@ -186,7 +187,6 @@ class _CaculatorState extends State<Caculator> {
     );
   }
 }
-
 
 
 
