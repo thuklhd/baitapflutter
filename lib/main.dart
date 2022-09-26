@@ -65,52 +65,119 @@ class _CaculatorState extends State<Caculator> {
           operator = "";
           checkNumber = true;
         } else if (operator == "X") {
-          Result = (firstNumber * secondNumber).toString();
+          Result = (firstNumber * secondNumber).toString();import 'package:flutter/material.dart';
+
+void main() {
+  runApp(Caculator());
+}
+
+class Caculator extends StatefulWidget {
+  @override
+  State<Caculator> createState() => _CaculatorState();
+}
+
+class _CaculatorState extends State<Caculator> {
+  String result = "";
+  int firstNumber = 0;
+  int secondNumber = 0;
+  String operator = "";
+  bool checkNumber = true;
+  String previousResult = "";
+
+  Widget CreateButtom(String button) {
+    return Expanded(
+
+      child: Container(
+        color: Colors.yellow,
+        child: OutlinedButton(
+
+          onPressed: () {
+            ClickButton(button);
+          },
+          child: Text(
+            button,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ),
+
+    );
+  }
+
+  void ClickButton(String button) {
+    if (button == "c") {
+      result = "";
+      firstNumber = 0;
+      secondNumber = 0;
+      result = "";
+      operator = "";
+    } else if (button == "+" ||
+        button == "-" ||
+        button == "X" ||
+        button == "/") {
+      operator = button;
+      result = button;
+    } else if (button == "=") {
+      {
+        if (operator == "+") {
+          result = (firstNumber + secondNumber).toString();
+          firstNumber = 0;
+          secondNumber = 0;
+          operator = "";
+          checkNumber = true;
+        } else if (operator == "-") {
+          result = (firstNumber - secondNumber).toString();
+          firstNumber = 0;
+          secondNumber = 0;
+          operator = "";
+          checkNumber = true;
+        } else if (operator == "X") {
+          result = (firstNumber * secondNumber).toString();
           firstNumber = 0;
           secondNumber = 0;
           operator = "";
           checkNumber = true;
         } else if (operator == "/") {
-          double Division = 0.0;
+          double division = 0.0;
 
-          Division = (firstNumber / secondNumber);
+          division = (firstNumber / secondNumber);
           firstNumber = 0;
           secondNumber = 0;
-          Result = Division.toString();
+          result = division.toString();
 
           operator = "";
           checkNumber = true;
         }
-        previousResult = Result;
+        previousResult = result;
       }
     } else {
       if (operator == "") {
         if (checkNumber ) {
-          firstNumber = int.parse(Button);
+          firstNumber = int.parse(button);
           checkNumber = false;
-          Result = firstNumber.toString();
+          result = firstNumber.toString();
         } else {
-          firstNumber = int.parse(Result + Button);
-          Result = firstNumber.toString();
+          firstNumber = int.parse(result + button);
+          result = firstNumber.toString();
         }
       } else {
-        if (Result == "+" ||
-            Result == "-" ||
-            Result == "X" ||
-            Result == "/") {
-          Result = "";
+        if (result == "+" ||
+            result == "-" ||
+            result == "X" ||
+            result == "/") {
+          result = "";
         }
-        secondNumber = int.parse(Result + Button);
-        Result = secondNumber.toString();
+        secondNumber = int.parse(result + button);
+        result = secondNumber.toString();
       }
     }
     setState(() {
-      Result;
+      result;
     });
   }
 
   @override
-  Widget build(BuildContext  context) {
+  Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
       home: Scaffold(
@@ -132,9 +199,9 @@ class _CaculatorState extends State<Caculator> {
                           child: OutlinedButton(
                             onPressed: () {
                               firstNumber = int.parse(previousResult);
-                              Result = previousResult;
+                              result = previousResult;
                               setState(() {
-                                 Result;
+                                result;
                               });
                             },
                             child: Text("history reslut  " + previousResult),
@@ -148,7 +215,7 @@ class _CaculatorState extends State<Caculator> {
                 color: Colors.cyan,
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  Result,
+                  result,
                   style: TextStyle(color: Colors.red, fontSize: 60),
                 ),
               )),
@@ -191,9 +258,6 @@ class _CaculatorState extends State<Caculator> {
     );
   }
 }
-
-
-
 
 
 
