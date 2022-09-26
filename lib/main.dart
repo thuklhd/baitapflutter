@@ -10,73 +10,6 @@ class Caculator extends StatefulWidget {
 }
 
 class _CaculatorState extends State<Caculator> {
-  String Result = "";
-  int firstNumber = 0;
-  int secondNumber = 0;
-  String operator = "";
-  bool checkNumber = true;
-  String previousResult = "";
-
-  Widget CreateButtom(String Button) {
-    return Expanded(
-
-      child: Container(
-        color: Colors.yellow,
-        child: OutlinedButton(
-
-          onPressed: () {
-            ClickButton(Button);
-          },
-          child: Text(
-            Button,
-            style: TextStyle(fontSize: 20),
-          ),
-        ),
-      ),
-
-    );
-  }
-
-  void ClickButton(String Button) {
-    if (Button == "c") {
-      Result = "";
-      firstNumber = 0;
-      secondNumber = 0;
-      Result = "";
-      operator = "";
-    } else if (Button == "+" ||
-        Button == "-" ||
-        Button == "X" ||
-        Button == "/") {
-      operator = Button;
-      Result = Button;
-    } else if (Button == "=") {
-      {
-        if (operator == "+") {
-          Result = (firstNumber + secondNumber).toString();
-          firstNumber = 0;
-          secondNumber = 0;
-          operator = "";
-          checkNumber = true;
-        } else if (operator == "-") {
-          Result = (firstNumber - secondNumber).toString();
-          firstNumber = 0;
-          secondNumber = 0;
-          operator = "";
-          checkNumber = true;
-        } else if (operator == "X") {
-          Result = (firstNumber * secondNumber).toString();import 'package:flutter/material.dart';
-
-void main() {
-  runApp(Caculator());
-}
-
-class Caculator extends StatefulWidget {
-  @override
-  State<Caculator> createState() => _CaculatorState();
-}
-
-class _CaculatorState extends State<Caculator> {
   String result = "";
   int firstNumber = 0;
   int secondNumber = 0;
@@ -84,7 +17,7 @@ class _CaculatorState extends State<Caculator> {
   bool checkNumber = true;
   String previousResult = "";
 
-  Widget CreateButtom(String button) {
+  Widget createButtom(String button) {
     return Expanded(
 
       child: Container(
@@ -92,7 +25,7 @@ class _CaculatorState extends State<Caculator> {
         child: OutlinedButton(
 
           onPressed: () {
-            ClickButton(button);
+            clickButton(button);
           },
           child: Text(
             button,
@@ -104,7 +37,7 @@ class _CaculatorState extends State<Caculator> {
     );
   }
 
-  void ClickButton(String button) {
+  void clickButton(String button) {
     if (button == "c") {
       result = "";
       firstNumber = 0;
@@ -221,34 +154,34 @@ class _CaculatorState extends State<Caculator> {
               )),
               Row(
                 children: [
-                  CreateButtom("c"),
-                  CreateButtom("="),
-                  CreateButtom("0"),
-                  CreateButtom("/")
+                  createButtom("c"),
+                  createButtom("="),
+                  createButtom("0"),
+                  createButtom("/")
                 ],
               ),
               Row(
                 children: [
-                  CreateButtom("9"),
-                  CreateButtom("8"),
-                  CreateButtom("7"),
-                  CreateButtom("X")
+                  createButtom("9"),
+                  createButtom("8"),
+                  createButtom("7"),
+                  createButtom("X")
                 ],
               ),
               Row(
                 children: [
-                  CreateButtom("6"),
-                  CreateButtom("5"),
-                  CreateButtom("4"),
-                  CreateButtom("-")
+                  createButtom("6"),
+                  createButtom("5"),
+                  createButtom("4"),
+                  createButtom("-")
                 ],
               ),
               Row(
                 children: [
-                  CreateButtom("3"),
-                  CreateButtom("2"),
-                  CreateButtom("1"),
-                  CreateButtom("+")
+                  createButtom("3"),
+                  createButtom("2"),
+                  createButtom("1"),
+                  createButtom("+")
                 ],
               )
             ],
@@ -258,11 +191,5 @@ class _CaculatorState extends State<Caculator> {
     );
   }
 }
-
-
-
-
-
-
 
 
